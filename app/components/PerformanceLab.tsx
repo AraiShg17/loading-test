@@ -188,6 +188,7 @@ export function PerformanceLab() {
   const [renderNonce, setRenderNonce] = useState(0);
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [history, setHistory] = useState<HistoryRow[]>([]);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(true);
   const [workerStatus, setWorkerStatus] = useState<WorkerStatus>("idle");
   const [workerSetupMs, setWorkerSetupMs] = useState<number | null>(null);
   const [workerMessage, setWorkerMessage] = useState("未初期化");
@@ -885,7 +886,7 @@ export function PerformanceLab() {
         </div>
 
         <section className="charts-grid">
-          <article className="chart-panel wide">
+          <article className="chart-panel">
             <div className="chart-header">
               <div>
                 <h2>部門別売上平均</h2>
@@ -1044,17 +1045,27 @@ export function PerformanceLab() {
           />
         </section>
 
-        <section className="history-panel">
+        <section className={`history-panel ${isHistoryOpen ? "open" : "collapsed"}`}>
           <div className="history-heading">
             <div>
               <h2>比較履歴</h2>
-              <p>フィルター変更やトグル変更ごとに最新30件を記録</p>
+              <p>最新3件分の高さで固定表示 / 最新30件を保持</p>
             </div>
-            <button className="secondary-button" type="button" onClick={() => setHistory([])}>
-              履歴クリア
-            </button>
+            <div className="history-actions">
+              <button
+                className="secondary-button history-toggle"
+                type="button"
+                aria-expanded={isHistoryOpen}
+                onClick={() => setIsHistoryOpen((current) => !current)}
+              >
+                {isHistoryOpen ? "格納" : "表示"}
+              </button>
+              <button className="secondary-button" type="button" onClick={() => setHistory([])}>
+                履歴クリア
+              </button>
+            </div>
           </div>
-          <div className="table-wrap">
+          <div className="table-wrap" aria-hidden={!isHistoryOpen}>
             <table>
               <thead>
                 <tr>
