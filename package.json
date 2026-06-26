@@ -1,0 +1,28 @@
+{
+  "name": "frontend-large-data-performance-lab",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "next": "latest",
+    "react": "latest",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "latest",
+    "recharts": "latest"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}
