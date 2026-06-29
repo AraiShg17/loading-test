@@ -20,6 +20,8 @@ export const RECORD_COUNT_OPTIONS = [
   50_000_000
 ] as const;
 
+export const DEFAULT_RECORD_COUNT = 50_000_000;
+
 export const OBJECT_DATASET_LIMIT = 5_000_000;
 
 export const COLUMNAR_BYTES_PER_RECORD =

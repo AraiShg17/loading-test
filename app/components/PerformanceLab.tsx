@@ -31,6 +31,7 @@ import {
 import { analyzeDataset } from "../lib/analyze";
 import {
   buildDatasetStructuresProgressively,
+  DEFAULT_RECORD_COUNT,
   estimateColumnarBytes,
   formatBytes,
   generateBusinessDatasetProgressively,
@@ -178,7 +179,7 @@ const createUiBlockMonitor = (): UiBlockMonitor => {
 };
 
 export function PerformanceLab() {
-  const [recordCount, setRecordCount] = useState<number>(RECORD_COUNT_OPTIONS[0]);
+  const [recordCount, setRecordCount] = useState<number>(DEFAULT_RECORD_COUNT);
   const [dataset, setDataset] = useState<BusinessDataset | null>(null);
   const [dataVersion, setDataVersion] = useState(0);
   const [filters, setFilters] = useState<Filters>(initialFilters);
@@ -722,7 +723,7 @@ export function PerformanceLab() {
             </select>
           </label>
           <button className="primary-button" type="button" onClick={handleGenerate} disabled={isGenerating}>
-            {isGenerating ? "処理中..." : "ランダムデータ生成"}
+            {isGenerating ? "処理中..." : `${recordCount.toLocaleString()}件のランダムデータ生成`}
           </button>
           {isGenerating ? (
             <button className="secondary-button cancel-button" type="button" onClick={handleCancelGeneration}>
